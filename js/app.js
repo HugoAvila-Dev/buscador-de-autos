@@ -95,4 +95,5 @@ function filtrarMarca(auto) {
     if( marca ){
         return auto.marca === datosBusqueda.marca
     }
+    return auto;
 }
