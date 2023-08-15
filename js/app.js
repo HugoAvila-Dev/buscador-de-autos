@@ -70,7 +70,6 @@ function mostrarAutos(autos) {
 
     limpiarHTML(); //Eliminar el HTML previo
     autos.forEach( auto => {
-
         const {marca, modelo, year, precio, puertas, color, transmision} = auto;
         const autoHTML = document.createElement('P');
         autoHTML.textContent = `
@@ -99,7 +98,19 @@ function llenarSelect() {
 //Función que filtra en base a la búsqueda 
 function filtrarAuto() {
     const resultado = autos.filter( filtrarMarca ).filter( filtrarYear ).filter( filtrarMinimo ).filter( filtrarMaximo ).filter( filtrarPuertas).filter( filtrarTransmision ).filter( filtrarColor );
-    mostrarAutos(resultado);
+
+    if(resultado.length){
+        mostrarAutos(resultado);
+    }else{
+        noResultado();
+    }
+}
+function noResultado(){
+    limpiarHTML();
+    const noResultado = document.createElement('DIV');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No Hay Resultados, Intenta con otros términos de búsqueda';
+    resultado.appendChild(noResultado);
 }
 
 function filtrarMarca(auto) {
